@@ -25,10 +25,3 @@ To change the release date, edit the `releaseDate` variable in `script.js`:
 ```javascript
 const releaseDate = new Date('YOUR_DATE_HERE').getTime();
 ```
-
-## Deployment to GitHub Pages
-
-1. Push these files to a GitHub repository
-2. Go to repository Settings → Pages
-3. Select main branch as source
-4. Your site will be live at `https://yourusername.github.io/repo-name/`
