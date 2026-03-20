@@ -2,6 +2,17 @@
 const releaseDate = new Date('September 12, 2026 00:00:00').getTime();
 const startDate = new Date('January 12, 2026 00:00:00').getTime();
 
+// milestones array - key dates between now and release
+const milestones = [
+    { date: new Date('March 20, 2026').getTime(), name: 'Project Started', icon: '🚀' },
+    { date: new Date('April 15, 2026').getTime(), name: 'First Quarter', icon: '📊' },
+    { date: new Date('June 1, 2026').getTime(), name: 'Halfway Point', icon: '⚡' },
+    { date: new Date('July 4, 2026').getTime(), name: 'Summer Milestone', icon: '☀️' },
+    { date: new Date('August 1, 2026').getTime(), name: 'Final Stretch', icon: '🎯' },
+    { date: new Date('September 1, 2026').getTime(), name: 'Almost There', icon: '🔥' },
+    { date: releaseDate, name: 'Freedom Day', icon: '🎉' }
+];
+
 // holidays array (month is 0-indexed)
 const holidays = [
     { date: new Date(2026, 3, 4), name: 'Easter Sunday' },
@@ -103,6 +114,100 @@ function checkHoliday(now) {
         document.getElementById('holidayDisplay').style.display = 'none';
     }
 }
+
+// particle system
+function initParticles() {
+    const canvas = document.getElementById('particleCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+    
+    const particles = [];
+    const particleCount = 50;
+    
+    for (let i = 0; i < particleCount; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            vx: (Math.random() - 0.5) * 0.5,
+            vy: (Math.random() - 0.5) * 0.5,
+            radius: Math.random() * 2 + 1,
+            alpha: Math.random() * 0.5 + 0.3
+        });
+    }
+    
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        particles.forEach(p => {
+            p.x += p.vx;
+            p.y += p.vy;
+            
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(233, 69, 96, ${p.alpha})`;
+            ctx.fill();
+        });
+        
+        requestAnimationFrame(animateParticles);
+    }
+    
+    animateParticles();
+    
+    window.addEventListener('resize', () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+    });
+}
+
+// render milestones
+function renderMilestones() {
+    const now = new Date().getTime();
+    const grid = document.getElementById('milestonesGrid');
+    
+    grid.innerHTML = milestones.map(m => {
+        const isPassed = now >= m.date;
+        const daysUntil = Math.floor((m.date - now) / (1000 * 60 * 60 * 24));
+        const statusClass = isPassed ? 'passed' : 'upcoming';
+        const statusText = isPassed ? 'Completed' : `${daysUntil} days`;
+        
+        return `
+            <div class="milestone-item ${isPassed ? 'completed' : ''}">
+                <div class="milestone-date">${m.date.toLocaleDateString()}</div>
+                <div class="milestone-name">${m.icon} ${m.name}</div>
+                <div class="milestone-status ${statusClass}">${statusText}</div>
+            </div>
+        `;
+    }).join('');
+}
+
+// share button functionality
+function initShare() {
+    const btn = document.getElementById('shareBtn');
+    const status = document.getElementById('shareStatus');
+    
+    btn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(window.location.href);
+            status.textContent = 'Copied!';
+            status.classList.add('visible');
+            setTimeout(() => status.classList.remove('visible'), 2000);
+        } catch (err) {
+            status.textContent = 'Failed to copy';
+            status.classList.add('visible');
+            setTimeout(() => status.classList.remove('visible'), 2000);
+        }
+    });
+}
+
+// initialize everything
+initParticles();
+renderMilestones();
+initShare();
 
 // update immediately and then every second
 updateCountdown();
