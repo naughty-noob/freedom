@@ -57,10 +57,20 @@ function updateCountdown() {
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
     
     // update main countdown
-    document.getElementById('days').innerText = days.toString().padStart(2, '0');
-    document.getElementById('hours').innerText = hours.toString().padStart(2, '0');
-    document.getElementById('minutes').innerText = minutes.toString().padStart(2, '0');
-    document.getElementById('seconds').innerText = seconds.toString().padStart(2, '0');
+    const daysElement = document.getElementById('days');
+    const hoursElement = document.getElementById('hours');
+    const minutesElement = document.getElementById('minutes');
+    const secondsElement = document.getElementById('seconds');
+    
+    if (!daysElement || !hoursElement || !minutesElement || !secondsElement) {
+        console.error('Countdown elements not found');
+        return;
+    }
+    
+    daysElement.innerText = days.toString().padStart(2, '0');
+    hoursElement.innerText = hours.toString().padStart(2, '0');
+    minutesElement.innerText = minutes.toString().padStart(2, '0');
+    secondsElement.innerText = seconds.toString().padStart(2, '0');
     
     // update progress bar
     updateProgress(now);
@@ -189,6 +199,11 @@ function renderMilestones() {
 function initShare() {
     const btn = document.getElementById('shareBtn');
     const status = document.getElementById('shareStatus');
+    
+    if (!btn || !status) {
+        console.error('Share button elements not found');
+        return;
+    }
     
     btn.addEventListener('click', async () => {
         try {
