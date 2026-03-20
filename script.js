@@ -1,16 +1,16 @@
-// calculate countdown until September 12, 2026 (11 months from January 12, 2026)
+// calculate countdown until December 12, 2026 (11 months from January 12, 2026)
 // Using explicit date construction for reliable parsing (month is 0-indexed)
-const releaseDate = new Date(2026, 8, 12, 0, 0, 0).getTime();  // Month 8 = September
+const releaseDate = new Date(2026, 11, 12, 0, 0, 0).getTime();  // Month 11 = December
 const startDate = new Date(2026, 0, 12, 0, 0, 0).getTime();     // Month 0 = January
 
 // milestones array - key dates between now and release
 const milestones = [
-    { date: new Date(2026, 2, 20).getTime(), name: 'Project Started', icon: '🚀' },
-    { date: new Date(2026, 3, 15).getTime(), name: 'First Quarter', icon: '📊' },
-    { date: new Date(2026, 5, 1).getTime(), name: 'Halfway Point', icon: '⚡' },
-    { date: new Date(2026, 6, 4).getTime(), name: 'Summer Milestone', icon: '☀️' },
-    { date: new Date(2026, 7, 1).getTime(), name: 'Final Stretch', icon: '🎯' },
-    { date: new Date(2026, 8, 1).getTime(), name: 'Almost There', icon: '🔥' },
+    { date: new Date(2026, 2, 12).getTime(), name: 'Project Started', icon: '🚀' },
+    { date: new Date(2026, 3, 12).getTime(), name: 'First Quarter', icon: '📊' },
+    { date: new Date(2026, 5, 12).getTime(), name: 'Halfway Point', icon: '⚡' },
+    { date: new Date(2026, 7, 12).getTime(), name: 'Summer Milestone', icon: '☀️' },
+    { date: new Date(2026, 8, 12).getTime(), name: 'Final Stretch', icon: '🎯' },
+    { date: new Date(2026, 10, 12).getTime(), name: 'Almost There', icon: '🔥' },
     { date: releaseDate, name: 'Freedom Day', icon: '🎉' }
 ];
 
