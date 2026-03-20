@@ -1,0 +1,159 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    max-width: 800px;
+    width: 100%;
+    animation: fadeIn 1s ease-out;
+}
+
+header h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    background: linear-gradient(90deg, #e94560, #0f3460);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -2px;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    color: #a0a0a0;
+    margin-bottom: 50px;
+    font-weight: 300;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+.time-box {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    padding: 30px 25px;
+    min-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.time-box:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(233, 69, 96, 0.2);
+}
+
+.number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: #e94560;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+}
+
+.label {
+    display: block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.separator {
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.2);
+    line-height: 1;
+}
+
+.release-date {
+    margin-bottom: 40px;
+}
+
+.release-date p {
+    font-size: 1.1rem;
+    color: #a0a0a0;
+}
+
+.release-date span {
+    color: #e94560;
+    font-weight: 600;
+}
+
+.quote {
+    padding: 30px;
+    background: linear-gradient(135deg, rgba(233, 69, 96, 0.1), rgba(15, 52, 96, 0.1));
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.quote p {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #ffffff;
+    opacity: 0.9;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .countdown {
+        gap: 10px;
+    }
+    
+    .time-box {
+        min-width: 80px;
+        padding: 20px 15px;
+    }
+    
+    .number {
+        font-size: 2rem;
+    }
+    
+    .separator {
+        font-size: 2rem;
+    }
+}
